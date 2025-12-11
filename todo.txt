@@ -1,0 +1,5 @@
+- Create model to predict before game has been played based on previous results?
+- Improve Accuracy by drawing most important fields and removing dupes / least important
+- Try manually removing dupes/ unnecessary data points
+- Fix typos in readme
+- update verbose 

@@ -13,7 +13,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 from premier_league import MatchStatistics
 
 MatchStatistics().create_dataset("data_set.csv")
-data_set = pd.read_csv("dataset.csv")
+data_set = pd.read_csv("data_set.csv")
 
 def get_match_result(home_goals, away_goals):
     if home_goals > away_goals:

@@ -1,6 +1,6 @@
 torch
 imblearn
-scikit-learn
+scikit-learn 1.5.2
 Premier_League
 pandas
 matplotlib
