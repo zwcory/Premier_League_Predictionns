@@ -38,7 +38,6 @@ plt.title("Distribution of Match Outcomes")
 plt.xlabel("Outcome")
 plt.ylabel("Frequency")
 plt.grid(axis='y', linestyle='--', alpha=0.7)
-plt.show()
 plt.savefig("match_outcome_distribution.png", dpi=300, bbox_inches='tight')
 plt.show()
 plt.close()
@@ -125,7 +124,7 @@ class_weights_tensor = torch.tensor([class_weights[0], class_weights[1], class_w
 criterion = nn.CrossEntropyLoss(weight=class_weights_tensor)
 
 optimizer = optim.AdamW(model.parameters(), lr=0.0025, weight_decay=0.0005)
-scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5, verbose=True)
+scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.5, patience=5)
 
 # Training loop
 n_epochs = 100
@@ -160,9 +159,9 @@ for epoch in range(n_epochs):
     avg_loss = epoch_loss / len(train_loader)
     train_losses.append(avg_loss)
     scheduler.step(val_loss)
-
+    current_lr = optimizer.param_groups[0]['lr']
     if (epoch + 1) % 10 == 0:
-        print(f"Epoch [{epoch + 1}/{n_epochs}], Train Loss: {avg_loss:.4f}, Val Loss: {val_loss.item():.4f}")
+        print(f"Epoch [{epoch + 1}/{n_epochs}], Train Loss: {avg_loss:.4f}, Val Loss: {val_loss.item():.4f}, LR {current_lr:.6f} ")
 
 # Final evaluation
 model.eval()
